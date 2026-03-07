@@ -9,19 +9,15 @@ Method | HTTP request | Description
 [**DatabaseInfo**](SettingsAPI.md#DatabaseInfo) | **Get** /deepfence/database/info | Get Database Info
 [**DeleteCustomScheduledTask**](SettingsAPI.md#DeleteCustomScheduledTask) | **Delete** /deepfence/scheduled-task/{id} | Delete Custom Schedule task
 [**DeleteEmailConfiguration**](SettingsAPI.md#DeleteEmailConfiguration) | **Delete** /deepfence/settings/email/{config_id} | Delete Email Configurations
-[**DeleteLicense**](SettingsAPI.md#DeleteLicense) | **Delete** /deepfence/license | Delete License
-[**GenerateLicense**](SettingsAPI.md#GenerateLicense) | **Post** /deepfence/license/generate | Generate License Key
 [**GetAgentBinaryDownloadURL**](SettingsAPI.md#GetAgentBinaryDownloadURL) | **Get** /deepfence/agent-deployment/binary/download-url | Get agent binary download url
 [**GetAgentVersions**](SettingsAPI.md#GetAgentVersions) | **Get** /deepfence/settings/agent/versions | Get available agent versions
 [**GetDeepfenceCommunicationMessages**](SettingsAPI.md#GetDeepfenceCommunicationMessages) | **Get** /deepfence/deepfence-communication/message | Get Deepfence communication messages
 [**GetEmailConfiguration**](SettingsAPI.md#GetEmailConfiguration) | **Get** /deepfence/settings/email | Get Email Configurations
-[**GetLicense**](SettingsAPI.md#GetLicense) | **Get** /deepfence/license | Get License Details
 [**GetScheduledTasks**](SettingsAPI.md#GetScheduledTasks) | **Get** /deepfence/scheduled-task | Get scheduled tasks
 [**GetSettings**](SettingsAPI.md#GetSettings) | **Get** /deepfence/settings/global-settings | Get settings
 [**GetUserAuditLogs**](SettingsAPI.md#GetUserAuditLogs) | **Post** /deepfence/settings/user-audit-log | Get user audit logs
 [**GetUserAuditLogsCount**](SettingsAPI.md#GetUserAuditLogsCount) | **Get** /deepfence/settings/user-audit-log/count | Get user audit logs count
 [**MarkDeepfenceCommunicationRead**](SettingsAPI.md#MarkDeepfenceCommunicationRead) | **Put** /deepfence/deepfence-communication/message/{id}/read | Mark Deepfence communication message read
-[**RegisterLicense**](SettingsAPI.md#RegisterLicense) | **Post** /deepfence/license | Register License
 [**TestConfiguredEmail**](SettingsAPI.md#TestConfiguredEmail) | **Post** /deepfence/settings/email/test | Test Configured Email
 [**TestUnconfiguredEmail**](SettingsAPI.md#TestUnconfiguredEmail) | **Post** /deepfence/settings/email/test-unconfigured | Test Unconfigured Email
 [**UpdateScheduledTask**](SettingsAPI.md#UpdateScheduledTask) | **Patch** /deepfence/scheduled-task/{id} | Update scheduled task
@@ -361,131 +357,6 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## DeleteLicense
-
-> DeleteLicense(ctx).Execute()
-
-Delete License
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/deepfence/golang_deepfence_sdk/client"
-)
-
-func main() {
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.SettingsAPI.DeleteLicense(context.Background()).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `SettingsAPI.DeleteLicense``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-}
-```
-
-### Path Parameters
-
-This endpoint does not need any parameter.
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteLicenseRequest struct via the builder pattern
-
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[bearer_token](../README.md#bearer_token)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## GenerateLicense
-
-> ModelGenerateLicenseResponse GenerateLicense(ctx).ModelGenerateLicenseRequest(modelGenerateLicenseRequest).Execute()
-
-Generate License Key
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/deepfence/golang_deepfence_sdk/client"
-)
-
-func main() {
-	modelGenerateLicenseRequest := *openapiclient.NewModelGenerateLicenseRequest("Company_example", "Email_example", "FirstName_example", "LastName_example", false) // ModelGenerateLicenseRequest |  (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.SettingsAPI.GenerateLicense(context.Background()).ModelGenerateLicenseRequest(modelGenerateLicenseRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `SettingsAPI.GenerateLicense``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `GenerateLicense`: ModelGenerateLicenseResponse
-	fmt.Fprintf(os.Stdout, "Response from `SettingsAPI.GenerateLicense`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGenerateLicenseRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **modelGenerateLicenseRequest** | [**ModelGenerateLicenseRequest**](ModelGenerateLicenseRequest.md) |  | 
-
-### Return type
-
-[**ModelGenerateLicenseResponse**](ModelGenerateLicenseResponse.md)
-
-### Authorization
-
-[bearer_token](../README.md#bearer_token)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
 ## GetAgentBinaryDownloadURL
 
 > ModelGetAgentBinaryDownloadURLResponse GetAgentBinaryDownloadURL(ctx).Execute()
@@ -715,67 +586,6 @@ Other parameters are passed through a pointer to a apiGetEmailConfigurationReque
 ### Return type
 
 [**[]ModelEmailConfigurationResp**](ModelEmailConfigurationResp.md)
-
-### Authorization
-
-[bearer_token](../README.md#bearer_token)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## GetLicense
-
-> ModelLicense GetLicense(ctx).Execute()
-
-Get License Details
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/deepfence/golang_deepfence_sdk/client"
-)
-
-func main() {
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.SettingsAPI.GetLicense(context.Background()).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `SettingsAPI.GetLicense``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `GetLicense`: ModelLicense
-	fmt.Fprintf(os.Stdout, "Response from `SettingsAPI.GetLicense`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-This endpoint does not need any parameter.
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetLicenseRequest struct via the builder pattern
-
-
-### Return type
-
-[**ModelLicense**](ModelLicense.md)
 
 ### Authorization
 
@@ -1101,72 +911,6 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## RegisterLicense
-
-> ModelRegisterLicenseResponse RegisterLicense(ctx).ModelRegisterLicenseRequest(modelRegisterLicenseRequest).Execute()
-
-Register License
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/deepfence/golang_deepfence_sdk/client"
-)
-
-func main() {
-	modelRegisterLicenseRequest := *openapiclient.NewModelRegisterLicenseRequest("LicenseKey_example") // ModelRegisterLicenseRequest |  (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.SettingsAPI.RegisterLicense(context.Background()).ModelRegisterLicenseRequest(modelRegisterLicenseRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `SettingsAPI.RegisterLicense``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `RegisterLicense`: ModelRegisterLicenseResponse
-	fmt.Fprintf(os.Stdout, "Response from `SettingsAPI.RegisterLicense`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiRegisterLicenseRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **modelRegisterLicenseRequest** | [**ModelRegisterLicenseRequest**](ModelRegisterLicenseRequest.md) |  | 
-
-### Return type
-
-[**ModelRegisterLicenseResponse**](ModelRegisterLicenseResponse.md)
-
-### Authorization
-
-[bearer_token](../README.md#bearer_token)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
